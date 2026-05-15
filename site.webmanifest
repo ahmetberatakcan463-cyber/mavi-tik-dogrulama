@@ -1,0 +1,9 @@
+{
+    "name": "X - Mavi Tik Doğrulama",
+    "short_name": "Mavi Tik",
+    "description": "X/Twitter Mavi Tik Doğrulama İşlemleri",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f1419",
+    "theme_color": "#1d9bf0"
+}

